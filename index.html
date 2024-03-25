@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Style checkboxes as circles */
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            margin-right: 5px;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+
+        /* Add custom style for checked checkboxes */
+        input[type="checkbox"]:checked {
+            background-color: #ff5722;
+        }
+
+        /* Style labels for checkboxes */
+        label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Pizza Order Form</h1>
+    <form id="pizza-form" onsubmit="return validateForm()">
+        <div>
+            <label for="size">Size:</label>
+            <select id="size" name="size" required>
+                <option value="" disabled selected>Select Size</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+        </div>
+        <div>
+            <label for="crust">Crust:</label>
+            <select id="crust" name="crust" required>
+                <option value="" disabled selected>Select Crust</option>
+                <option value="thin">Thin Crust</option>
+                <option value="thick">Thick Crust</option>
+                <option value="stuffed">Stuffed Crust</option>
+                <option value="cheese-stuffed">Cheese Stuffed Crust</option>
+                <option value="garlic-butter">Garlic Butter Crust</option>
+            </select>
+        </div>
+        <div>
+            <label for="toppings">Toppings:</label>
+            <div class="topping-options">
+                <input type="checkbox" id="cheese" name="topping" value="cheese">
+                <label for="cheese">Cheese</label><br>
+                <input type="checkbox" id="pepperoni" name="topping" value="pepperoni">
+                <label for="pepperoni">Pepperoni</label><br>
+                <input type="checkbox" id="sausage" name="topping" value="sausage">
+                <label for="sausage">Sausage</label><br>
+                <input type="checkbox" id="mushrooms" name="topping" value="mushrooms">
+                <label for="mushrooms">Mushrooms</label><br>
+                <input type="checkbox" id="vegetables" name="topping" value="vegetables">
+                <label for="vegetables">Vegetables</label><br>
+                <input type="checkbox" id="paneer" name="topping" value="paneer">
+                <label for="paneer">Paneer</label><br>
+                <input type="checkbox" id="butter-chicken" name="topping" value="butter chicken">
+                <label for="butter-chicken">Butter Chicken</label><br>
+            </div>
+        </div>
+        <button type="submit">Order</button>
+    </form>
+    <p id="student-info"></p>
+    <div id="pizza-description"></div>
+</div>
+<script src="script.js" defer></script>
+<script>
+    function validateForm() {
+        var size = document.getElementById('size').value;
+        var crust = document.getElementById('crust').value;
+        var toppings = document.querySelectorAll('input[name="topping"]:checked');
+
+        if (size === '' || crust === '' || toppings.length === 0) {
+            alert('Please fill in all required fields.');
+            return false; // Prevent form submission if validation fails
+        }
+        return true; // Proceed with form submission if validation passes
+    }
+</script>
+</body>
+</html>
